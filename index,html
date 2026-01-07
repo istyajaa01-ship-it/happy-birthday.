@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Happy Birthday Salam Sayang!</title>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"/>
+    <style>
+        body {
+            background-color: #ffe4e1;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            text-align: center;
+            overflow-x: hidden;
+        }
+        .container {
+            margin-top: 50px;
+            padding: 20px;
+        }
+        .profile-img {
+            width: 200px;
+            height: 200px;
+            border-radius: 50%;
+            border: 5px solid #ff69b4;
+            object-fit: cover;
+            animation: pulse 2s infinite;
+        }
+        @keyframes pulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+            100% { transform: scale(1); }
+        }
+        .btn-love {
+            background-color: #ff69b4;
+            color: white;
+            border: none;
+            padding: 15px 30px;
+            font-size: 1.2rem;
+            border-radius: 50px;
+            cursor: pointer;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+            transition: 0.3s;
+        }
+        .btn-love:hover { transform: translateY(-5px); background-color: #ff1493; }
+        #pesan { display: none; margin-top: 30px; font-size: 1.5rem; color: #d02090; font-weight: bold; }
+        .falling-hearts { position: fixed; top: -10px; pointer-events: none; animation: fall linear forwards; }
+        @keyframes fall { to { transform: translateY(100vh); } }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <img src="WhatsApp Image 2026-01-07 at 14.33.23.jpeg" class="profile-img animate__animated animate__bounceIn" alt="Foto Ulang Tahun">
+        
+        <h1 class="animate__animated animate__fadeInDown" style="color: #ff1493;">Happy Birthday, Sayang! ❤️</h1>
+        <p class="animate__animated animate__fadeInUp">Klik tombol di bawah untuk kejutan...</p>
+
+        <button class="btn-love" onclick="mulaiKejutan()">Klik Di Sini ✨</button>
+
+        <div id="pesan" class="animate__animated animate__zoomIn">
+            I Love You So Much! 💖 <br>
+            Semoga harimu seindah senyummu.
+        </div>
+    </div>
+
+    <audio id="musik" loop>
+        <source src="WhatsApp Audio 2026-01-07 at 15.56.10.mpeg" type="audio/mpeg">
+    </audio>
+
+    <script>
+        function mulaiKejutan() {
+            const musik = document.getElementById('musik');
+            musik.play(); // Menjalankan musik
+
+            document.getElementById('pesan').style.display = 'block';
+
+            // Efek Hati Berjatuhan
+            setInterval(() => {
+                const heart = document.createElement('div');
+                heart.innerHTML = '❤️';
+                heart.className = 'falling-hearts';
+                heart.style.left = Math.random() * 100 + 'vw';
+                heart.style.fontSize = Math.random() * 20 + 10 + 'px';
+                heart.style.duration = Math.random() * 3 + 2 + 's';
+                document.body.appendChild(heart);
+                setTimeout(() => heart.remove(), 5000);
+            }, 300);
+
+            // Munculkan Pesan Beruntun (SweetAlert2)
+            Swal.fire({
+                title: 'HBD Sayang Aam! 🎂',
+                text: 'Semoga panjang umur & sehat selalu ya...',
+                imageUrl: 'https://media.giphy.com/media/v1.Y2lkPTc5MGI3NjExNHJ6eXJ6eXJ6eXJ6eXJ6eXJ6eXJ6eXJ6eXJ6eXJ6eXJ6eCZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/L95W4M8qOIsS0K559v/giphy.gif',
+                imageWidth: 200,
+                confirmButtonText: 'Lanjut'
+            }).then(() => {
+                Swal.fire({
+                    title: 'Janji ya?',
+                    text: 'Tetap sama aku terus selamanya! 💍',
+                    confirmButtonText: 'Iya, Janji ❤️'
+                });
+            });
+        }
+    </script>
+</body>
+</html>
